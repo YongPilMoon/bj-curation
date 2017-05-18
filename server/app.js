@@ -1,6 +1,7 @@
 var path = require('path');
 const express = require('express');
 const hbs = require('express-hbs');
+const {mongoose} = require('./db/mongoose');
 
 var app = express();
 app.set('view engine', 'hbs');
