@@ -36,11 +36,11 @@ app.get('/pickup', (req, res) => {
   res.render('pickup.hbs');
 });
 
-app.get('/user/register', (req, res) => {
+app.get('/auth/register', (req, res) => {
     res.render('register.hbs');
 });
 
-app.post('/user/register', (req, res) => {
+app.post('/auth/register', (req, res) => {
     var body = _.pick(req.body, ['username', 'password']);
     var user = new User(body);
 
@@ -52,12 +52,12 @@ app.post('/user/register', (req, res) => {
 
 });
 
-app.post('/user/login',
+app.post('/auth/login',
     passport.authenticate(
         'local',
         {
             successRedirect: '/welcome',
-            failureRedirect: 'user/login',
+            failureRedirect: 'auth/login',
             failureFlash: false
         }
     )
