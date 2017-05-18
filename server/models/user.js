@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const _ = require('lodash');
 const bcrypt = require('bcryptjs');
 
-var UserSchema = new mongoose.Schema({
+var userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
@@ -18,21 +18,48 @@ var UserSchema = new mongoose.Schema({
 });
 
 
-UserSchema.pre('save', function (next) {
+userSchema.pre('save', function (next) {
     var user = this;
 
-    if(user.isModified('password')){
-        bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(user.password, salt, (err, hash) => {
-                user.password = hash;
-                next();
-            });
-        });
-    } else{
-        next();
-    }
+    var salt = bcrypt.genSaltSync(10);
+    var hash = bcrypt.hashSync(user.password, salt);
+
+    console.log(user.password + "===>" + hash);
+
+    user.password = hash;
+
+    next();
 });
 
-var User = mongoose.model('user', UserSchema);
+userSchema.statics.authenticate = function(){
+    return function(username, password, callback){
+        User.findOne({username:username}, function(error, user) {
+            if(error) return callback(error, null);
+            if(!user) return callback(null, null);
 
-module.exports = {User};
+            if(!bcrypt.compareSync(password, user.password)) {
+                return callback(null, null);
+            } else {
+                return callback(null, user);
+            }
+        });
+    }
+};
+
+userSchema.statics.serialize = function() {
+    return function(user, done){
+        done(null, user._id);
+    }
+};
+
+userSchema.statics.deserialize = function() {
+    return function(id, done){
+        User.findById(id, function(err, user){
+            done(err, user);
+        })
+    }
+}
+
+var User = mongoose.model('user', userSchema);
+
+module.exports = User;
