@@ -9,6 +9,7 @@ const passport = require('passport');
 var flash = require("connect-flash");
 
 var authRouter = require('./routes/auth');
+var bjRouter = require('./routes/bj');
 
 //models
 var {User}  = require('./models/user');
@@ -23,7 +24,7 @@ app.engine('hbs', hbs.express4({
     layoutsDir: path.join(__dirname,'/views/layouts')
 }));
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(session({
@@ -36,11 +37,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use( flash());
 // routes
-app.get('/pickup', (req, res) => {
-  res.render('pickup.hbs');
-});
+
 
 app.use("/", authRouter);
+app.use("/bj", bjRouter);
 
 // server
 const port = process.env.PORT || 3000;

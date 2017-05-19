@@ -20,7 +20,7 @@ router.route('/register/')
         var user = new User(body);
 
         user.save().then(() => {
-            res.redirect('/pickup');
+            res.redirect('/bj/pickup');
         }).catch((e) => {
             res.status(400).send(e);
         });

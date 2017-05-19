@@ -1,0 +1,16 @@
+{{!< main}}
+
+{{#contentFor 'title'}}
+    <title>Add BJ</title>
+{{/contentFor}}
+<h1> ADD BJ </h1>
+<form action="/bj/add" method="post" enctype="multipart/form-data">
+    <p>
+        <input type="text" name="bj_name" placeholder="name">
+    </p>
+    <textarea name="info" placeholder="info"></textarea><br>
+    <input type="file" name="bj_picture">
+    <input type="submit">
+</form>
+
+

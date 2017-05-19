@@ -4,5 +4,14 @@
     <title>Pick Up Influence</title>
 {{/contentFor}}
 <h1>Pick Up Influence</h1>
-
-
+<form action="" method="post">
+    {{#each bjs}}
+        name : {{this.bj_name}}<br>
+        info : {{this.info}}<br>
+        <div>
+            <input type="checkbox" name="bj_ids" value={{this._id}}>
+            <img src="/uploads/{{this.url}}" width="300" height="300"><br>
+        </div>
+    {{/each}}
+    <input type="submit">
+</form>

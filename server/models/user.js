@@ -14,7 +14,8 @@ var userSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 6
-    }
+    },
+    bj_ids: [{type: mongoose.Schema.Types.ObjectId, ref: 'Bj'}]
 });
 
 
