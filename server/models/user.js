@@ -13,7 +13,7 @@ var userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minlength: 6
+        minlength: 1
     },
     bj_ids: [{type: mongoose.Schema.Types.ObjectId, ref: 'Bj'}]
 });

@@ -23,7 +23,8 @@ router.route('/pickup/')
     .get((req, res) => {
         Bj.find().then((bjs) => {
             res.render('bj/pickup.hbs', {
-                bjs: bjs
+                bjs: bjs,
+                user: req.user
             });
         });
     })
@@ -35,10 +36,6 @@ router.route('/pickup/')
         user.bj_ids = bj_ids;
         user.save().then(() => {
             res.send('my page');
-        }).then((bj_ids) => {
-            for(var bj_id in bj_ids){
-                console.log("bjs: " + bj_id);
-            }
         }).catch((e) => {
             res.status(400).send(e);
         });

@@ -44,7 +44,7 @@ router.route('/login/')
             {
                 successRedirect: 'bj/recommend/',
                 failureRedirect: '/login',
-                failureFlash: true
+                failureFlash: false
             }
         )
 );
