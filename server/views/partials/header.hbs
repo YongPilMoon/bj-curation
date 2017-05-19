@@ -1,4 +1,9 @@
 <header>
-    <p><a href="/login">Login</a></p>
-    <p><a href="/register">SignUp</a></p>
+    {{#unless user}}
+        <p><a href="/login">Login</a></p>
+        <p><a href="/register">SignUp</a></p>
+    {{else}}
+        {{user.username}}
+        <p><a href="/logout">Logout</a></p>
+    {{/unless}}
 </header>

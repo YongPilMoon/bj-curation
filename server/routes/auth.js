@@ -12,7 +12,9 @@ passport.deserializeUser( User.deserialize() );
 router.route('/register/')
 
     .get((req, res) => {
-        res.render('auth/register.hbs');
+        res.render('auth/register.hbs', {
+            user: req.user
+        });
     })
 
     .post((req, res) => {
@@ -31,20 +33,31 @@ router.route('/register/')
 router.route('/login/')
 
     .get(function(req, res, next) {
-        return res.render("auth/login.hbs");
+        return res.render("auth/login.hbs", {
+            user: req.user
+        });
     })
 
     .post(
-        passport.authenticate('local'),
-        (req, res, next) =>{
-            req.flash("success", "성공적으로 로그인 되었습니다.");
-            return res.redirect("bj/recommend/" + req.user._id);
-        }
-    );
+        passport.authenticate(
+            'local',
+            {
+                successRedirect: 'bj/recommend/',
+                failureRedirect: '/login',
+                failureFlash: true
+            }
+        )
+);
 
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
 
 router.get('/', (req, res) => {
-    res.render('index.hbs');
+    res.render('index.hbs', {
+        user: req.user
+    });
 });
 
 

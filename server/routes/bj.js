@@ -35,6 +35,10 @@ router.route('/pickup/')
         user.bj_ids = bj_ids;
         user.save().then(() => {
             res.send('my page');
+        }).then((bj_ids) => {
+            for(var bj_id in bj_ids){
+                console.log("bjs: " + bj_id);
+            }
         }).catch((e) => {
             res.status(400).send(e);
         });
@@ -44,7 +48,10 @@ router.route('/pickup/')
 router.route('/add/')
 
     .get((req, res) => {
-        res.render('bj/add_form.hbs', {Bj});
+        res.render('bj/add_form.hbs', {
+            Bj,
+            user: req.user
+        });
     })
 
     .post(upload.single('bj_picture'), (req, res) => {
@@ -59,11 +66,12 @@ router.route('/add/')
         });
     });
 
-router.route('/recommend/:id')
+router.route('/recommend/')
     .get((req, res) => {
         YTSearch({key: API_KEY, term: "민아"},(videos) => {
             res.render('bj/recommend',{
-                videos: videos
+                videos: videos,
+                user: req.user
             });
         });
     });
@@ -73,7 +81,8 @@ router.route('/video/:id')
         const videoId = req.params.id;
         const url = `https://www.youtube.com/embed/${videoId}`;
         res.render('bj/video',{
-            url: url
+            url: url,
+            user: req.user
         });
     });
 

@@ -25,8 +25,6 @@ userSchema.pre('save', function (next) {
     var salt = bcrypt.genSaltSync(10);
     var hash = bcrypt.hashSync(user.password, salt);
 
-    console.log(user.password + "===>" + hash);
-
     user.password = hash;
 
     next();
