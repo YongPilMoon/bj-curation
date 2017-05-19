@@ -1,0 +1,12 @@
+{{!< main}}
+
+{{#contentFor 'title'}}
+    <title>Recommend Influence</title>
+{{/contentFor}}
+<h1>Recommend Influence</h1>
+
+{{#each videos}}
+    title : {{this.snippet.title}}<br>
+    description : {{this.snippet.description}}<br>
+    <a href="/bj/video/{{this.id.videoId}}"><img src="{{this.snippet.thumbnails.medium.url}}" alt=""></a>
+{{/each}}

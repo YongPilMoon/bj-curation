@@ -38,8 +38,7 @@ router.route('/login/')
         passport.authenticate('local'),
         (req, res, next) =>{
             req.flash("success", "성공적으로 로그인 되었습니다.");
-            var redirectUrl = req.body.next || "/";
-            return res.redirect(redirectUrl);
+            return res.redirect("bj/recommend/" + req.user._id);
         }
     );
 

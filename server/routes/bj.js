@@ -4,6 +4,8 @@ var _ = require('lodash');
 var User = require('../models/user');
 var Bj = require('../models/bj');
 var multer = require('multer');
+const API_KEY = 'AIzaSyAuQCVeNfKhtRk9KlChQPT1nO27DPO_5Ss';
+const YTSearch = require('youtube-api-search');
 var storage = multer.diskStorage({
     destination: function(req, file, cb){
         cb(null, 'public/uploads/');
@@ -20,7 +22,7 @@ router.route('/pickup/')
 
     .get((req, res) => {
         Bj.find().then((bjs) => {
-            res.render('pickup.hbs', {
+            res.render('bj/pickup.hbs', {
                 bjs: bjs
             });
         });
@@ -54,6 +56,24 @@ router.route('/add/')
             res.redirect('/bj/pickup');
         }).catch((e) => {
             res.status(400).send(e);
+        });
+    });
+
+router.route('/recommend/:id')
+    .get((req, res) => {
+        YTSearch({key: API_KEY, term: "민아"},(videos) => {
+            res.render('bj/recommend',{
+                videos: videos
+            });
+        });
+    });
+
+router.route('/video/:id')
+    .get((req, res) => {
+        const videoId = req.params.id;
+        const url = `https://www.youtube.com/embed/${videoId}`;
+        res.render('bj/video',{
+            url: url
         });
     });
 
