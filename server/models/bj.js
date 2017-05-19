@@ -5,17 +5,16 @@ const multer = require('multer');
 var bjSchema = new mongoose.Schema({
     bj_name: {
         type: String,
-        required: true,
         minlength: 1,
         trim: true
     },
     info: {
-        type: String,
-        required: true
+        type: String
     },
     url:{
         type: String
-    }
+    },
+    hash_tags: [{type: mongoose.Schema.Types.ObjectId, ref: 'Hash'}]
 });
 
 

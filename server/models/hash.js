@@ -4,11 +4,10 @@ const multer = require('multer');
 
 var hashSchema = new mongoose.Schema({
 
-    hash_tag: {
+    hash_tags: {
         type: String,
         require: true
     },
-
     bj_id: {
         type: String,
         require: true
