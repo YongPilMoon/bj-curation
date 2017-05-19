@@ -3,25 +3,45 @@
 {{#contentFor 'title'}}
     <title>Video</title>
 {{/contentFor}}
-<h1>Video</h1>
-<div className="embed-responsive embed-responsive-16by9">
-    <iframe className="embed-responsive-item" src={{url}}></iframe>
+<div class="container">
+    <div class="video-wrapper">
+        <div id="my-video-wrap" class="col-md-11">
+            <iframe class="custom_margin" width="100%" height="640" src={{url}} frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="col-md-1">
+            <a onclick="nextVideo()" href="#"><span class="custom-glyphicon glyphicon glyphicon-chevron-right"></span></a>
+        </div>
+    </div>
 </div>
 <div id="StreamList">
 </div>
-<blockquote class="embedly-card"><h4><a href="https://www.twitch.tv/videos/144222927">
-    @MYMALK4PON3 Sigueme en Twitter Nuevo sorteo https://gleam.io/LCynM/xbox-one-y-ps4</a></h4><p>Twitch is the world's leading video platform and community for gamers. More than 45 million gamers gather every month on Twitch to broadcast, watch and chat about gaming. Twitch's video platform is the backbone of both live and on-demand distribution for the entire video game ecosystem.</p></blockquote>
 <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
-
 <script>
-    $.ajax({
-        type: 'GET',
-        url: "https://api.twitch.tv/kraken/search/channels?query=해리&client_id=15fc5bn964y9wbpv3hscpfqoludado",
-        data: {
-        },
-        success : function(data){
-            console.log(data);
+    var index = 0;
+    function nextVideo() {
+        if(index == 0){
+            $('#my-video-wrap').html("<iframe class='custom_margin' width='100%' height='640' src='https://www.youtube.com/embed/LnlHkYpU8Go' frameborder='0' allowfullscreen></iframe>");
+        } else if(index == 1){
+            $('#my-video-wrap').html("<iframe class='custom_margin' width='100%' height='640' src='https://www.youtube.com/embed/wZwBlLGanpY' frameborder='0' allowfullscreen></iframe>");
+        } else if(index == 2){
+            $('#my-video-wrap').html("<blockquote width='100%' height='640' class='embedly-card'><h4><a href='https://www.twitch.tv/videos/144222927'>");
+        } else if(index == 3){
+            $('#my-video-wrap').html("<blockquote width='100%' height='640' class='embedly-card'><h4><a href='https://www.twitch.tv/videos/134326228'>");
+        } else if(index == 4){
+            $('#my-video-wrap').html("<iframe width='100%' height='640' class='custom_margin' src='https://player.vimeo.com/video/110224683' title='Slow Video' allowfullscreen>");
         }
-    });
-
+        index = index + 1;
+    }
 </script>
+<!--<script>-->
+    <!--$.ajax({-->
+        <!--type: 'GET',-->
+        <!--url: "https://api.twitch.tv/kraken/search/channels?query=해리&client_id=15fc5bn964y9wbpv3hscpfqoludado",-->
+        <!--data: {-->
+        <!--},-->
+        <!--success : function(data){-->
+            <!--console.log(data);-->
+        <!--}-->
+    <!--});-->
+
+<!--</script>-->

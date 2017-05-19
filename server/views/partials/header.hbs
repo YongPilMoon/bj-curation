@@ -1,11 +1,25 @@
 <header>
-    {{#unless user}}
-        <p><a href="/login">Login</a></p>
-        <p><a href="/register">SignUp</a></p>
-    {{else}}
-        {{user.username}}
-        <p><a href="/logout">Logout</a></p>
-    {{/unless}}
-    <p><a href="/bj/pickup">BjPickup</a></p>
-    <p><a href="/bj/add">Add Bj</a></p>
+    <div class="wrap">
+        <nav>
+            <div class="top">
+                <ul>
+                    <li><a href="#">사이트맵</a></li>
+                    <li><a href="#">회원가입</a></li>
+                    <li><a href="#">한국어</a></li>
+                </ul>
+            </div>
+            <ul id="left">
+                <li id="icon"></li>
+                <li><a href="#">카테고리</a></li>
+                <li><a href="#">편성표</a></li>
+                <li><a href="#">LIVE</a></li>
+            </ul>
+            <ul id="right">
+                <li id="search_icon"><a href="#"><img src="/img/nav/glass.png" alt="돋보기"></a></li>
+                <li><a href="#">검색</a></li>
+                <li><a href="#">TAZO님</a></li>
+                <li id="user_icon"></li>
+            </ul>
+        </nav>
+    </div>
 </header>

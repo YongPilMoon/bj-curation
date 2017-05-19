@@ -1,6 +1,11 @@
-<!DOCTYPE>
-<html>
+<!DOCTYPE html>
+    <html lang="en">
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>youngH</title>
+        <script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
         <!-- 합쳐지고 최소화된 최신 CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -14,7 +19,320 @@
                 integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
                 crossorigin="anonymous"></script>
 
-        {{{block "title"}}}
+        <style>
+            @font-face{
+                font-family: 'NanumSquare';
+                src: url(../../../public/fonts/NanumSquare.ttf);
+            }
+
+            body {
+                font-family: NanumGothic;
+            }
+
+            * { font-size: 0.97em; padding: 0; margin: 0; box-sizing: border-box; }
+            a { text-decoration: none; color: white; }
+            ul { list-style: none;}
+
+            .wrap{
+                width: 100%;
+                height: 250px;
+                background-color: #666;
+            }
+
+            nav{
+                padding-top: 30px;
+                width: 1600px;
+                margin: 0 auto;
+                color: white;
+            }
+
+            nav .top{
+                font-size: 12px;
+                font-weight: lighter;
+                float: right;
+            }
+
+            nav .top ul li{
+                padding-left: 30px;
+                float: left;
+            }
+
+            nav #left{
+                clear: both;
+                padding-top: 10px;
+            }
+
+            nav #left li{
+                float: left;
+                padding-top: 8px;
+                margin-right: 30px;
+                font-size: 15px;
+            }
+
+            nav #left #icon{
+                width: 30px;
+                height: 30px;
+                background-color: white;
+                border-radius: 100%;
+                padding-top: 0;
+            }
+
+            nav #right{
+                float: right;
+            }
+
+
+            nav #right li{
+                float: left;
+                padding-top: 8px;
+                font-size: 15px;
+                margin-right: 30px;
+            }
+
+            nav #right #search_icon{
+                padding: 0;
+                padding-top: 8px;
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+            }
+
+            nav #right #search_icon *{
+                width: 20px;
+                height: 20px;
+            }
+
+
+            nav #right li:nth-child(3){
+                margin-left: 12px;
+                margin-right: 5px;
+            }
+
+            nav #right li:nth-child(4){
+                margin-right: 5px;
+            }
+
+            nav #right #user_icon{
+                width: 30px;
+                height: 30px;
+                background-color: white;
+                border-radius: 100%;
+                padding-top: 0;
+                margin-right: 0;
+            }
+
+            @media all and (max-width: 1440px){
+                nav{
+                    padding-top: 30px;
+                    width: 1280px;
+                    margin: 0 auto;
+                    color: white;
+                }
+            }
+
+            #artist{
+                width: 100%;
+                height: 200px;
+                background-color: white;
+            }
+
+            #artist h1{
+                margin-top: 50px;
+                text-align: center;
+                font-weight: bold;
+                letter-spacing: 0.5px;
+                margin-bottom: 50px;
+                font-size: 20px;
+            }
+
+            #artist #list{
+                display: flex;
+                width: 100%;
+            }
+
+            #artist #list a{
+                color: #292929;
+            }
+
+            #artist #list li{
+                width: 10%;
+                text-align: center;
+            }
+
+            #artist #list li p{
+                margin-top: 10px;
+                font-weight: bold;
+                font-size: 15px;
+            }
+
+            #artist #list li .artist_icon *{
+                margin: 0 auto;
+                width: 70px;
+                height: 70px;
+                background-color: #292929;
+                border-radius: 100%;
+            }
+
+            #moba_contents{
+                position: relative;
+                background-image: linear-gradient(to bottom, white, #EEEEEE);
+                width: 100%;
+                height: 1000px;
+            }
+
+            .first_h1{
+                padding-top: 100px;
+                font-weight: bold;
+                font-size: 20px;
+                text-align: center;
+                padding-bottom: 25px;
+            }
+
+            .moba_btn{
+                width: 300px;
+                border-radius: 50px;
+                margin: 0 auto;
+                border: 1px solid gray;
+                background-color: white;
+            }
+
+            .moba_btn *{
+                width: 33.33333%;
+                background-color: white;
+                border: none;
+                outline: 0;
+            }
+
+            .moba_btn *:hover{
+                background-color: black;
+                border-radius: 30px;
+                background-color: white;
+                cursor: pointer;
+            }
+
+            .moba_hover{
+                border: 2px solid gray;
+                border-radius: 30px;
+                width: 90px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                background-color: white;
+            }
+
+            .moba_media {
+                width: 1600px;
+                height: 700px;
+                margin: 0 auto;
+                margin-top: 50px;
+                border: 1px solid black;
+            }
+
+            .moba_layout {
+                width: 100%;
+                height: 100%;
+            }
+
+            .moba_layout .element{
+                width: 25%;
+                height: 50%;
+                border: 1px solid black;
+            }
+
+            .bottom_h1{
+                position: absolute;
+                left: 49%;
+                bottom: 100px;
+                text-align: center;
+            }
+
+
+            footer{
+                position: relative;
+                background: white;
+                width: 100%;
+                height: 200px;
+            }
+
+            footer .foot{
+                width: 1600px;
+                margin: 0 auto;
+                display: flex;
+            }
+
+
+            footer .foot h1{
+                display: inline-block;
+                font-size: 50px;
+                margin-top: 80px;
+                clear: both;
+            }
+
+            footer .foot .content {
+                float: left;
+                margin-top: 100px;
+                margin-left: 300px;
+            }
+
+            footer .foot .content li{
+                float: left;
+                font-size: 15px;
+                font-weight: bold;
+                margin-right: 200px;
+            }
+
+            footer .foot .content li a{
+                color: #666;
+            }
+
+            footer .foot .sns{
+                float: right;
+            }
+
+            footer .foot .sns li{
+                float: left;
+                margin-top: 90px;
+                margin-right: 80px;
+            }
+
+            footer .foot .sns li:nth-child(4){
+                margin-right: 0;
+            }
+
+            footer .foot .sns li img{
+                width: 30px;
+                height: 30px;
+            }
+
+            .custom_margin {
+                padding: 30px;
+            }
+
+            .custom-glyphicon{
+                margin-top: 300px;
+                font-size: 50px;
+                color: #000;
+            }
+
+            .custom-glyphicon:active {
+                color: blue;
+            }
+        </style>
+
+
+        <script type="text/javascript">
+
+            var img_photos = ['img_1','img_2','img_3','img_4','img_5','img_6','img_7','img_8','img_9','img10'];
+
+            function artist_over(event){
+                $("#"+event.id).css("opacity",'0.6');
+            }
+
+            function artist_out(event){
+                $("#"+event.id).css("opacity",'1');
+            }
+
+
+        </script>
     </head>
     <body>
         {{> header}}
